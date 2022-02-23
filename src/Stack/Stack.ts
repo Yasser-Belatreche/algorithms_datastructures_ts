@@ -14,19 +14,19 @@ class StackNode<T> {
 
 interface IStack<T> {
   size: number;
-  isEmpty: () => boolean;
-  push: (element: T) => Stack<T>;
-  front: () => T | undefined;
-  pop: () => Stack<T>;
+  isEmpty(): boolean;
+  push(element: T): Stack<T>;
+  front(): T | undefined;
+  pop(): Stack<T>;
 }
 
 class Stack<T> implements IStack<T> {
-  private head: StackNode<T> | null;
+  private _head: StackNode<T> | null;
   private _front: StackNode<T> | null;
   private _size: number;
 
   constructor() {
-    this.head = null;
+    this._head = null;
     this._front = null;
     this._size = 0;
   }
@@ -44,8 +44,8 @@ class Stack<T> implements IStack<T> {
 
     const temp: StackNode<T> = new StackNode<T>(element);
 
-    if (!this.head || !this._front) {
-      this.head = temp;
+    if (!this._head || !this._front) {
+      this._head = temp;
       this._front = temp;
     } else {
       this._front.next = temp;
@@ -56,10 +56,10 @@ class Stack<T> implements IStack<T> {
   }
 
   public pop(): Stack<T> {
-    if (!this.head) throw new Error("cannot pop from an empty stack");
+    if (!this._head) throw new Error("cannot pop from an empty stack");
 
     this._size--;
-    let temp: StackNode<T> = this.head;
+    let temp: StackNode<T> = this._head;
 
     while (temp.next && temp.next !== this._front) temp = temp.next;
 
