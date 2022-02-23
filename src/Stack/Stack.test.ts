@@ -31,7 +31,7 @@ describe("Stack", () => {
     expect(stack.size).to.equal(4);
   });
 
-  it("should be able to pop the last element pushed to the stack", () => {
+  it("the front of the stack should be the last elements pushed into the stack", () => {
     stack.push(1).push(2).push(3);
     expect(stack.front()).to.equal(3);
   });
